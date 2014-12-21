@@ -52,8 +52,7 @@ class AskPatternInstrumentation {
       case "heavyweight" ⇒ Some(errorHandler(stack = Some(new StackTraceCaptureException)))
     }
 
-    handler.map(h ⇒ future.onFailure(h)(akkaExtension.dispatcher))
-
+    handler.map(future.onFailure(_)(akkaExtension.dispatcher))
     future
   }
 
